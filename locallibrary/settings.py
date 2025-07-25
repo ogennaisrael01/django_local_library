@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'locallibrary.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': "mysql.connector.django",
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'library',
         'USER': 'root',
         'PASSWORD': '193782',
