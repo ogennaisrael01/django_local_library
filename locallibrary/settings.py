@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # MY APPS
     'catalog',
-    "django_extensions",
     "debug_toolbar",
 ]
 
