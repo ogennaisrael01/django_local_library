@@ -81,10 +81,10 @@ WSGI_APPLICATION = 'locallibrary.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'library',
-        'USER': 'root',
-        'PASSWORD': '193782',
-        'HOST': 'localhost',
+        'NAME': 'ogenna01$library',
+        'USER': 'ogenna01',
+        'PASSWORD': '2004@israel',
+        'HOST': 'ogenna01.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
