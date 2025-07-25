@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+ 
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,13 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # MY APPS
-    'catalog'
+    'catalog',
+    "django_extensions",
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -56,7 +60,7 @@ ROOT_URLCONF = 'locallibrary.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ BASE_DIR / "templates" ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,11 +80,14 @@ WSGI_APPLICATION = 'locallibrary.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': "mysql.connector.django",
+        'NAME': 'library',
+        'USER': 'root',
+        'PASSWORD': '193782',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -122,3 +129,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "catalog.CustomUser"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "login"
+
+AUTHENTICATION_BACKENDS = [
+    'catalog.backends.EmailBackend',  # Your custom backend
+    'django.contrib.auth.backends.ModelBackend',  # Keep the default backend as a fallback
+]
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

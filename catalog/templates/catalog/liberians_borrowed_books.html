@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+{% if borrowed_books %}
+    <h1>All Borrowed Books</h1>
+    <ul>
+    {% for book in borrowed_books %}
+        <li>
+            <a href="{% url 'book_detail' book.book.id %}">{{ book.book.title }}</a>---- <strong>Borrowed By</strong>({{ book.borrower.get_username }})----<strong>To bo returned on</strong>({{ book.due_back }})
+        </li>
+    {% endfor %}
+    </ul> 
+    {% else %}
+        <p>There are no books borrowed</p>
+
+    {% endif %}
+
+{% endblock %}
